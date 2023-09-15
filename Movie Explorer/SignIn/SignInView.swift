@@ -44,6 +44,7 @@ struct SignInView: View {
             Button("SignInView.signInBtn") {
                 print("Login")
             }
+            .buttonStyle(ActionButtonStyle())
         }
     }
 }

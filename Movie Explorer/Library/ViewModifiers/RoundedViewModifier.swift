@@ -12,7 +12,7 @@ struct RoundedViewModifier: ViewModifier {
     private let strokeWidth: CGFloat
     private let strokeColor: Color
     
-    init(cornerRadius: CGFloat = .textFieldCornerRadius, strokeWidth: CGFloat = .borderWidth, strokeColor: Color = .main) {
+    init(cornerRadius: CGFloat = .cornerRadius, strokeWidth: CGFloat = .textFieldBorderWidth, strokeColor: Color = .main) {
         self.cornerRadius = cornerRadius
         self.strokeWidth = strokeWidth
         self.strokeColor = strokeColor

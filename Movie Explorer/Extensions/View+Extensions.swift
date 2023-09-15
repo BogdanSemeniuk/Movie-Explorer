@@ -13,10 +13,4 @@ extension View {
             .padding(.horizontal, horizontal)
             .padding(.vertical, vertical)
     }
-    
-    func textFieldShadows() -> some View {
-        self
-            .shadow(color: .darkShadow, radius: .shadowRadius, x: .shadowOffsetX, y: .shadowOffsetY)
-            .shadow(color: .lightShadow, radius: .shadowRadius, x: -.shadowOffsetX, y: -.shadowOffsetY)
-    }
 }

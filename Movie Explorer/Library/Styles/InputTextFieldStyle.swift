@@ -19,11 +19,11 @@ struct InputTextFieldStyle: TextFieldStyle {
             .submitLabel(submitLabel)
             .padding(.inputHorizontalPadding, .inputVerticalPadding)
             .background(isFocused ? Color.white : .textFieldBackground)
-            .modifier(RoundedViewModifier(strokeWidth: .borderWidth,
+            .modifier(RoundedViewModifier(strokeWidth: .textFieldBorderWidth,
                                           strokeColor: isFocused ? .main : .lightGray))
-            .font(.title2)
-            .padding(.horizontalPadding, .verticalPadding)
-            .textFieldShadows()
+            .font(.title3)
+            .padding(.textFieldHorizontalPadding, .textFieldVerticalPadding)
+            .modifier(ShadowModifier())
             .focused($isFocused)
         }
 }
