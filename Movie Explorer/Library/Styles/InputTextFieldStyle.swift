@@ -22,7 +22,6 @@ struct InputTextFieldStyle: TextFieldStyle {
             .modifier(RoundedViewModifier(strokeWidth: .textFieldBorderWidth,
                                           strokeColor: isFocused ? .main : .lightGray))
             .font(.title3)
-            .padding(.textFieldHorizontalPadding, .textFieldVerticalPadding)
             .modifier(ShadowModifier())
             .focused($isFocused)
         }

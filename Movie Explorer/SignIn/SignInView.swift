@@ -26,22 +26,24 @@ struct SignInView: View {
             }
             .frame(height: headerViewHeight, alignment: .center)
             
-            
-            TextField("SignInView.emailTF", text: $email)
-                .focused($focusedField, equals: .email)
-                .onSubmit {
-                    focusedField = .password
-                }
-                .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
-            SecureField("SignInView.passwordTF", text: $password)
-                .focused($focusedField, equals: .password)
-                .onSubmit {
-                    focusedField = nil
-                }
-                .textFieldStyle(InputTextFieldStyle(submitLabel: .go))
+            Group {
+                TextField("SignInView.emailTF", text: $email)
+                    .focused($focusedField, equals: .email)
+                    .onSubmit {
+                        focusedField = .password
+                    }
+                    .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
+                SecureInputView(inputValue: $password)
+                    .focused($focusedField, equals: .password)
+                    .onSubmit {
+                        focusedField = nil
+                    }
+                    .textFieldStyle(InputTextFieldStyle(submitLabel: .go))
+            }
+            .padding(.textFieldHorizontalPadding, .textFieldVerticalPadding)
             Spacer()
             Button("SignInView.signInBtn") {
-                print("LOGIN")
+                print(password)
             }
             .buttonStyle(ActionButtonStyle())
         }

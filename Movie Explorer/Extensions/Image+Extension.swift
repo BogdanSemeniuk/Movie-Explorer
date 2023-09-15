@@ -11,4 +11,12 @@ extension Image {
     static var logo: Image {
         Image("Logo")
     }
+    
+    static var eye: Image {
+        Image(systemName: "eye")
+    }
+    
+    static var eyeSlash: Image {
+        Image(systemName: "eye.slash")
+    }
 }
