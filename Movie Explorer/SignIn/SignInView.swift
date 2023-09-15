@@ -11,8 +11,8 @@ struct SignInView: View {
     private let logoSideLength: CGFloat = 100
     private let headerViewHeight: CGFloat = 200
     
-    @State private var email: String = ""
-    @State private var password: String = ""
+    @State private var email = ""
+    @State private var password = ""
     @FocusState private var focusedField: FocusedField?
     
     var body: some View {
@@ -40,9 +40,8 @@ struct SignInView: View {
                 }
                 .textFieldStyle(InputTextFieldStyle(submitLabel: .go))
             Spacer()
-            
             Button("SignInView.signInBtn") {
-                print("Login")
+                print("LOGIN")
             }
             .buttonStyle(ActionButtonStyle())
         }
