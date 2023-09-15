@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SignInView: View {
-    private let logoSideValue: CGFloat = 100
+    private let logoSideLength: CGFloat = 100
     private let headerViewHeight: CGFloat = 200
     
     @State private var email: String = ""
@@ -20,20 +20,20 @@ struct SignInView: View {
             VStack {
                 Image.logo
                     .resizable()
-                    .frame(width: logoSideValue, height: logoSideValue)
-                Text("Welcome to Movie Explorer")
+                    .frame(width: logoSideLength, height: logoSideLength)
+                Text("SignInView.welcomeText")
                     .font(.title2)
             }
             .frame(height: headerViewHeight, alignment: .center)
             
             
-            TextField("Email", text: $email)
+            TextField("SignInView.emailTF", text: $email)
                 .focused($focusedField, equals: .email)
                 .onSubmit {
                     focusedField = .password
                 }
                 .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
-            SecureField("Password", text: $password)
+            SecureField("SignInView.passwordTF", text: $password)
                 .focused($focusedField, equals: .password)
                 .onSubmit {
                     focusedField = nil
@@ -41,7 +41,7 @@ struct SignInView: View {
                 .textFieldStyle(InputTextFieldStyle(submitLabel: .go))
             Spacer()
             
-            Button("LOGIN") {
+            Button("SignInView.signInBtn") {
                 print("Login")
             }
         }
@@ -54,7 +54,7 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 
-extension SignInView {
+fileprivate extension SignInView {
     enum FocusedField {
         case email, password
     }

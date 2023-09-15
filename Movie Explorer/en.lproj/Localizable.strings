@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  Movie Explorer
+
+  Created by Богдан Семенюк on 15.09.2023.
+  
+*/
+
+"SignInView.welcomeText" = "Welcome to Movie Explorer!";
+"SignInView.emailTF" = "Email";
+"SignInView.passwordTF" = "Password";
+"SignInView.signInBtn" = "Sign In";
