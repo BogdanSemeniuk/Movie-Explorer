@@ -8,26 +8,32 @@
 import SwiftUI
 
 struct SecureInputView: View {
-    var placeholderLocalizationKey = "SignInView.passwordTF"
+    var placeholder: String
     @Binding var inputValue: String
     
-    private let eyeButtonHorizontalPudding: CGFloat = 15
+    private let eyeButtonHorizontalPudding: CGFloat = 10
     @State private var isSecured = true
+    @State private var visibleInput: String = ""
     
     var body: some View {
         ZStack(alignment: .trailing) {
-            Group {
-                if isSecured {
-                    SecureField(String(localized: String.LocalizationValue(placeholderLocalizationKey)), text: $inputValue)
-                } else {
-                    TextField(String(localized: String.LocalizationValue(placeholderLocalizationKey)), text: $inputValue)
+            TextField(placeholder, text: $visibleInput)
+                .onChange(of: visibleInput) { newValue in
+                    guard isSecured else { inputValue = newValue; return }
+                    if newValue.count >= inputValue.count {
+                        let newItem = newValue.filter { $0 != Character("●") }
+                        inputValue.append(newItem)
+                    } else {
+                        inputValue.removeLast()
+                    }
+                    visibleInput = String(newValue.map { _ in Character("●") })
                 }
-            }
             Button {
                 isSecured.toggle()
+                visibleInput = isSecured ? String(inputValue.map { _ in Character("●") }) :  inputValue
             } label: {
-                (isSecured ? Image.eye : Image.eyeSlash)
-                    .tint(.eye)
+                Image(systemName: isSecured ? "eye" : "eye.slash")
+                    .tint(.gray)
             }
             .padding(.trailing, eyeButtonHorizontalPudding)
         }
@@ -36,6 +42,6 @@ struct SecureInputView: View {
 
 struct SecureInputView_Previews: PreviewProvider {
     static var previews: some View {
-        SecureInputView(inputValue: .constant(""))
+        SecureInputView(placeholder: "Password", inputValue: .constant(""))
     }
 }

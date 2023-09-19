@@ -33,7 +33,7 @@ struct SignInView: View {
                         focusedField = .password
                     }
                     .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
-                SecureInputView(inputValue: $password)
+                SecureInputView(placeholder: String(localized: .init(stringLiteral: "SignInView.passwordTF")), inputValue: $password)
                     .focused($focusedField, equals: .password)
                     .onSubmit {
                         focusedField = nil
