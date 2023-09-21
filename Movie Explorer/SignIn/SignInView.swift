@@ -6,14 +6,21 @@
 //
 
 import SwiftUI
+import ActivityKit
 
-struct SignInView: View {
+struct SignInView<ViewModel: SignInAbstraction>: View {
+    @ObservedObject private var viewModel: ViewModel
+    
     private let logoSideLength: CGFloat = 100
     private let headerViewHeight: CGFloat = 200
     
     @State private var email = ""
     @State private var password = ""
     @FocusState private var focusedField: FocusedField?
+    
+    init(viewModel: ViewModel) {
+        self.viewModel = viewModel
+    }
     
     var body: some View {
         VStack {
@@ -43,7 +50,7 @@ struct SignInView: View {
             .padding(.textFieldHorizontalPadding, .textFieldVerticalPadding)
             Spacer()
             Button("SignInView.signInBtn") {
-                print(password)
+                viewModel.signIn()
             }
             .buttonStyle(ActionButtonStyle())
         }
@@ -52,7 +59,7 @@ struct SignInView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(viewModel: SignInViewModel())
     }
 }
 
