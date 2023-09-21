@@ -12,6 +12,7 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
     @ObservedObject private var viewModel: ViewModel
     
     private let logoSideLength: CGFloat = 100
+    private let spinnerSideLength: CGFloat = 200
     private let headerViewHeight: CGFloat = 200
     
     @State private var email = ""
@@ -48,12 +49,24 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
                     .textFieldStyle(InputTextFieldStyle(submitLabel: .go))
             }
             .padding(.textFieldHorizontalPadding, .textFieldVerticalPadding)
+            .disabled(viewModel.isLoading)
             Spacer()
             Button("SignInView.signInBtn") {
                 viewModel.signIn()
             }
             .buttonStyle(ActionButtonStyle())
+            .disabled(fieldsNotFilled())
         }
+        .overlay {
+            if viewModel.isLoading {
+                LottieView(name: "LoadingAnimation")
+                    .frame(width: spinnerSideLength, height:  spinnerSideLength)
+            }
+        }
+    }
+    
+    private func fieldsNotFilled() -> Bool {
+        password.isEmpty || email.isEmpty
     }
 }
 
