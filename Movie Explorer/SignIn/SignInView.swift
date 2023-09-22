@@ -12,7 +12,6 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
     @ObservedObject private var viewModel: ViewModel
     
     private let logoSideLength: CGFloat = 100
-    private let spinnerSideLength: CGFloat = 200
     private let headerViewHeight: CGFloat = 200
     
     @State private var email = ""
@@ -57,12 +56,8 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             .buttonStyle(ActionButtonStyle())
             .disabled(fieldsNotFilled())
         }
-        .overlay {
-            if viewModel.isLoading {
-                LottieView(name: "LoadingAnimation")
-                    .frame(width: spinnerSideLength, height:  spinnerSideLength)
-            }
-        }
+        .spinner(isPresented: viewModel.isLoading,
+                 spinnerView: { AnyView(LottieView(name: "LoadingAnimation")) })
     }
     
     private func fieldsNotFilled() -> Bool {
