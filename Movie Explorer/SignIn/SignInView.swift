@@ -55,6 +55,14 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             }
             .buttonStyle(ActionButtonStyle())
             .disabled(fieldsNotFilled())
+            HStack(spacing: .zero) {
+                Text("SignInView.signUpPrompt")
+                Button("SignInView.signUpBtn") {
+                    
+                }
+                .tint(.textButtonTint)
+            }
+            .padding(.vertical)
         }
         .spinner(isPresented: viewModel.isLoading,
                  spinnerView: { AnyView(LottieView(name: "LoadingAnimation")) })

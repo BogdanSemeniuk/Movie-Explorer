@@ -16,6 +16,7 @@ extension Color {
     static var buttonBackground: Color { Color("ButtonBackground") }
     static var buttonBackgroundPressed: Color { Color("ButtonBackgroundPressed") }
     static var buttonText: Color { Color("ButtonText") }
+    static var textButtonTint: Color { Color("TextButtonTint") }
     static var buttonTextPressed: Color { Color("ButtonTextPressed") }
     static var buttonBackgroundDisabled: Color { Color("ButtonBackgroundDisabled") }
     static var buttonTextDisabled: Color { Color("ButtonTextDisabled") }

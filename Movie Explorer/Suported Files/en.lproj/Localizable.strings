@@ -10,3 +10,5 @@
 "SignInView.emailTF" = "Email";
 "SignInView.passwordTF" = "Password";
 "SignInView.signInBtn" = "Sign In";
+"SignInView.signUpPrompt" = "Don't have an account, ";
+"SignInView.signUpBtn" = "register";
