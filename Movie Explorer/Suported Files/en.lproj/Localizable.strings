@@ -12,3 +12,5 @@
 "SignInView.signInBtn" = "Sign In";
 "SignInView.signUpPrompt" = "Don't have an account, ";
 "SignInView.signUpBtn" = "register";
+
+"SignUpView.welcomeText" = "Register a new account";

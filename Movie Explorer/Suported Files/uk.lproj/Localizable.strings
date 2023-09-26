@@ -10,3 +10,7 @@
 "SignInView.emailTF" = "Пошта";
 "SignInView.passwordTF" = "Пароль";
 "SignInView.signInBtn" = "Увійти";
+"SignInView.signUpPrompt" = "Немає облікового запису, ";
+"SignInView.signUpBtn" = "зареєструватися";
+
+"SignUpView.welcomeText" = "Зареєструвати новий обліковий запис";

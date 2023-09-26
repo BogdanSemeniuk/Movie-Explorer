@@ -10,7 +10,7 @@ import SwiftUI
 struct SignUpView: View {
     var body: some View {
         VStack {
-            HeaderWelcomeView(text: String(localized: "SignInView.welcomeText"))
+            HeaderWelcomeView(text: String(localized: "SignUpView.welcomeText"))
         }
     }
 }
