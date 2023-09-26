@@ -11,9 +11,6 @@ import ActivityKit
 struct SignInView<ViewModel: SignInAbstraction>: View {
     @ObservedObject private var viewModel: ViewModel
     
-    private let logoSideLength: CGFloat = 100
-    private let headerViewHeight: CGFloat = 200
-    
     @State private var email = ""
     @State private var password = ""
     @FocusState private var focusedField: FocusedField?
@@ -24,17 +21,17 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
     
     var body: some View {
         VStack {
-            HeaderWelcomeView(text: String(localized: "SignInView.welcomeText"))
-            .frame(height: headerViewHeight, alignment: .center)
+            HeaderWelcomeView(text: "SignIn.welcomeText".localized())
+                .frame(height: .welcomeHeaderHeight)
             
             Group {
-                TextField("SignInView.emailTF", text: $email)
+                TextField("SignIn.emailTF", text: $email)
                     .focused($focusedField, equals: .email)
                     .onSubmit {
                         focusedField = .password
                     }
                     .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
-                SecureInputView(placeholder: String(localized: "SignInView.passwordTF"), inputValue: $password)
+                SecureInputView(placeholder: "SignIn.passwordTF".localized(), inputValue: $password)
                     .focused($focusedField, equals: .password)
                     .onSubmit {
                         focusedField = nil
@@ -45,18 +42,14 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             .disabled(viewModel.isLoading)
             
             Spacer()
-            Button("SignInView.signInBtn") {
+            Button("SignIn.signInBtn") {
                 viewModel.signIn()
             }
             .buttonStyle(ActionButtonStyle())
             .disabled(fieldsNotFilled())
-            
-            HStack(spacing: .zero) {
-                Text("SignInView.signUpPrompt")
-                Button("SignInView.signUpBtn") {
-                    
-                }
-                .tint(.textButtonTint)
+            PromptWithAction(text: "SignIn.signUpPrompt".localized(),
+                             actionText: "SignIn.signUpBtn".localized()) {
+                
             }
             .padding(.vertical)
         }

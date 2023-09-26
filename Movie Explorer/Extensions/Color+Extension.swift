@@ -21,4 +21,5 @@ extension Color {
     static var buttonBackgroundDisabled: Color { Color("ButtonBackgroundDisabled") }
     static var buttonTextDisabled: Color { Color("ButtonTextDisabled") }
     static var eye: Color { Color("Eye") }
+    static var textFieldPrompt: Color { Color("TextFieldPrompt") }
 }

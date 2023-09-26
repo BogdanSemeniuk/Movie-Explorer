@@ -6,11 +6,19 @@
   
 */
 
-"SignInView.welcomeText" = "Welcome to Movie Explorer!";
-"SignInView.emailTF" = "Email";
-"SignInView.passwordTF" = "Password";
-"SignInView.signInBtn" = "Sign In";
-"SignInView.signUpPrompt" = "Don't have an account, ";
-"SignInView.signUpBtn" = "register";
+"SignIn.welcomeText" = "Welcome to Movie Explorer!";
+"SignIn.emailTF" = "Email";
+"SignIn.passwordTF" = "Password";
+"SignIn.signInBtn" = "Sign In";
+"SignIn.signUpPrompt" = "Don't have an account, ";
+"SignIn.signUpBtn" = "register";
 
-"SignUpView.welcomeText" = "Register a new account";
+"SignUp.welcomeText" = "Register a new account";
+"SignUp.userNameTF" = "User name";
+"SignUp.passwordTF" = "Password";
+"SignUp.passwordPrompt" = "6 characters minimum, at least 1 digit required";
+"SignUp.confirmPasswordTF" = "Confirm password";
+"SignUp.emailTF" = "Email";
+"SignUp.registerBtn" = "Register";
+"SignUp.signInPrompt" = "I have an account, ";
+"SignUp.signInBtn" = "sign in";

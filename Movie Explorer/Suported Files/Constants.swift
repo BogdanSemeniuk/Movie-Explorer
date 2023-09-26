@@ -25,4 +25,5 @@ extension CGFloat {
     static let shadowOffsetY: CGFloat = 2
     static let cornerRadius: CGFloat = 10
     static let spinnerSideLength: CGFloat = 200
+    static let welcomeHeaderHeight: CGFloat = 200
 }

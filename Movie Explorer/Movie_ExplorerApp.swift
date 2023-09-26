@@ -11,7 +11,7 @@ import SwiftUI
 struct Movie_ExplorerApp: App {
     var body: some Scene {
         WindowGroup {
-            SignInView(viewModel: SignInViewModel())
+            SignUpView()
         }
     }
 }

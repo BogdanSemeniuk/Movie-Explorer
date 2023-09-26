@@ -5,16 +5,20 @@ struct InputTextFieldStyle: TextFieldStyle {
     @FocusState private var isFocused: Bool
     private let keyboardType: UIKeyboardType
     private let submitLabel: SubmitLabel
+    private let autocapitalization: UITextAutocapitalizationType
     
-    init(keyboardType: UIKeyboardType = .default, submitLabel: SubmitLabel = .search) {
+    init(keyboardType: UIKeyboardType = .default,
+         submitLabel: SubmitLabel = .search,
+         autocapitalization: UITextAutocapitalizationType = .none) {
         self.keyboardType = keyboardType
         self.submitLabel = submitLabel
+        self.autocapitalization = autocapitalization
     }
     
     func _body(configuration: TextField<Self._Label>) -> some View {
         return configuration
             .autocorrectionDisabled()
-            .autocapitalization(.none)
+            .autocapitalization(autocapitalization)
             .keyboardType(keyboardType)
             .submitLabel(submitLabel)
             .padding(.inputHorizontalPadding, .inputVerticalPadding)
