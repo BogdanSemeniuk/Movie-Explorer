@@ -10,9 +10,6 @@ import ActivityKit
 
 struct SignInView<ViewModel: SignInAbstraction>: View {
     @ObservedObject private var viewModel: ViewModel
-    
-    @State private var email = ""
-    @State private var password = ""
     @FocusState private var focusedField: FocusedField?
     
     init(viewModel: ViewModel) {
@@ -25,13 +22,13 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
                 .frame(height: .welcomeHeaderHeight)
             
             Group {
-                TextField("SignIn.emailTF", text: $email)
+                TextField("SignIn.emailTF", text: $viewModel.email)
                     .focused($focusedField, equals: .email)
                     .onSubmit {
                         focusedField = .password
                     }
                     .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
-                SecureInputView(placeholder: "SignIn.passwordTF".localized(), inputValue: $password)
+                SecureInputView(placeholder: "SignIn.passwordTF".localized(), inputValue: $viewModel.password)
                     .focused($focusedField, equals: .password)
                     .onSubmit {
                         focusedField = nil
@@ -46,7 +43,7 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
                 viewModel.signIn()
             }
             .buttonStyle(ActionButtonStyle())
-            .disabled(fieldsNotFilled())
+            .disabled(viewModel.fieldsNotFilled())
             PromptWithAction(text: "SignIn.signUpPrompt".localized(),
                              actionText: "SignIn.signUpBtn".localized()) {
                 
@@ -58,10 +55,6 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
         }
         .spinner(isPresented: viewModel.isLoading,
                  spinnerView: { AnyView(LottieView(name: "LoadingAnimation")) })
-    }
-    
-    private func fieldsNotFilled() -> Bool {
-        password.isEmpty || email.isEmpty
     }
 }
 
