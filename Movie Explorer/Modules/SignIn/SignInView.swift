@@ -24,13 +24,7 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
     
     var body: some View {
         VStack {
-            VStack {
-                Image.logo
-                    .resizable()
-                    .frame(width: logoSideLength, height: logoSideLength)
-                Text("SignInView.welcomeText")
-                    .font(.title2)
-            }
+            HeaderWelcomeView(text: String(localized: "SignInView.welcomeText"))
             .frame(height: headerViewHeight, alignment: .center)
             
             Group {
@@ -40,7 +34,7 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
                         focusedField = .password
                     }
                     .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
-                SecureInputView(placeholder: String(localized: .init(stringLiteral: "SignInView.passwordTF")), inputValue: $password)
+                SecureInputView(placeholder: String(localized: "SignInView.passwordTF"), inputValue: $password)
                     .focused($focusedField, equals: .password)
                     .onSubmit {
                         focusedField = nil
@@ -49,12 +43,14 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             }
             .padding(.textFieldHorizontalPadding, .textFieldVerticalPadding)
             .disabled(viewModel.isLoading)
+            
             Spacer()
             Button("SignInView.signInBtn") {
                 viewModel.signIn()
             }
             .buttonStyle(ActionButtonStyle())
             .disabled(fieldsNotFilled())
+            
             HStack(spacing: .zero) {
                 Text("SignInView.signUpPrompt")
                 Button("SignInView.signUpBtn") {
