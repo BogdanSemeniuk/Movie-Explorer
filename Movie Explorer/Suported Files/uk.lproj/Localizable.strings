@@ -14,3 +14,11 @@
 "SignInView.signUpBtn" = "зареєструватися";
 
 "SignUpView.welcomeText" = "Зареєструвати новий обліковий запис";
+"SignUp.userNameTF" = "Ім'я користувача";
+"SignUp.passwordTF" = "Пароль";
+"SignUp.passwordPrompt" = "6 characters minimum, at least 1 digit required";
+"SignUp.confirmPasswordTF" = "Підтвердження пароля";
+"SignUp.emailTF" = "Е-пошта";
+"SignUp.registerBtn" = "Зареєструвати";
+"SignUp.signInPrompt" = "Я маю обліковий запис, ";
+"SignUp.signInBtn" = "увійти";
