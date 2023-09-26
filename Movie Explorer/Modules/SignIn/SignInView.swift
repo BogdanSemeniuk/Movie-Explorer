@@ -53,6 +53,9 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             }
             .padding(.vertical)
         }
+        .onTapGesture {
+            focusedField = nil
+        }
         .spinner(isPresented: viewModel.isLoading,
                  spinnerView: { AnyView(LottieView(name: "LoadingAnimation")) })
     }

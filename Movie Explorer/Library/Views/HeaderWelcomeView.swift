@@ -22,12 +22,13 @@ struct HeaderWelcomeView: View {
                 .frame(width: logoSideLength, height: logoSideLength)
             Text(text)
                 .font(.title2)
+                .multilineTextAlignment(.center)
         }
     }
 }
 
 struct HeaderWelcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HeaderWelcomeView(text: String(localized: "SignInView.welcomeText"))
+        HeaderWelcomeView(text: String(localized: "SignIn.welcomeText"))
     }
 }

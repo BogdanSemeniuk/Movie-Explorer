@@ -13,7 +13,7 @@
 "SignInView.signUpPrompt" = "Немає облікового запису, ";
 "SignInView.signUpBtn" = "зареєструватися";
 
-"SignUpView.welcomeText" = "Зареєструвати новий обліковий запис";
+"SignUp.welcomeText" = "Зареєструвати новий обліковий запис";
 "SignUp.userNameTF" = "Ім'я користувача";
 "SignUp.passwordTF" = "Пароль";
 "SignUp.passwordPrompt" = "6 characters minimum, at least 1 digit required";
