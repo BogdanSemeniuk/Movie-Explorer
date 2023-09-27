@@ -24,15 +24,11 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             Group {
                 TextField("SignIn.emailTF", text: $viewModel.email)
                     .focused($focusedField, equals: .email)
-                    .onSubmit {
-                        focusedField = .password
-                    }
+                    .onSubmit { focusedField = .password }
                     .textFieldStyle(InputTextFieldStyle(keyboardType: .emailAddress, submitLabel: .next))
                 SecureInputView(placeholder: "SignIn.passwordTF".localized(), inputValue: $viewModel.password)
                     .focused($focusedField, equals: .password)
-                    .onSubmit {
-                        focusedField = nil
-                    }
+                    .onSubmit { focusedField = nil }
                     .textFieldStyle(InputTextFieldStyle(submitLabel: .go))
             }
             .padding(.textFieldHorizontalPadding, .textFieldVerticalPadding)
@@ -44,6 +40,7 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             }
             .buttonStyle(ActionButtonStyle())
             .disabled(viewModel.fieldsNotFilled())
+            
             PromptWithAction(text: "SignIn.signUpPrompt".localized(),
                              actionText: "SignIn.signUpBtn".localized()) {
                 
