@@ -67,6 +67,9 @@ struct SignUpView<ViewModel: SignUpAbstraction>: View {
         }.onTapGesture { focusedField = nil }
         .spinner(isPresented: viewModel.isLoading,
                  spinnerView: { AnyView(LottieView(name: "LoadingAnimation")) })
+        .alert(isPresented: $viewModel.isPresentedError, error: viewModel.error) {
+            Button("Ok") {  }
+        }
     }
 }
 
