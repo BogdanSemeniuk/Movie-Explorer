@@ -31,7 +31,8 @@ final class SignUpViewModel: SignUpAbstraction {
     @Published var isPresentedError = false
     
     init() {
-        $error.map { $0 != nil }.assign(to: &$isPresentedError)
+        $error.filter { $0 != nil }.map { _ in true }.assign(to: &$isPresentedError)
+        $isPresentedError.filter { !$0 }.map { _ in nil  }.assign(to: &$error)
     }
     
     func fieldsNotFilled() -> Bool {
