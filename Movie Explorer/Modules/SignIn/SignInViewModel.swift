@@ -15,6 +15,7 @@ protocol SignInAbstraction: ObservableObject {
     var isLoading: Bool { get }
     func signIn()
     func fieldsNotFilled() -> Bool
+    func toSignUp()
 }
 
 final class SignInViewModel: SignInAbstraction {
@@ -23,12 +24,21 @@ final class SignInViewModel: SignInAbstraction {
     @Published var isLoading = false
     @Published var token = ""
     private let request = Just("sfa56as5gsd56g6rfdgsfvbn")
+    private let router: Routable
+    
+    init(router: Routable) {
+        self.router = router
+    }
     
     func signIn() {
         guard !isLoading else { return }
         isLoading.toggle()
         request.delay(for: .seconds(5), scheduler: RunLoop.main).assign(to: &$token)
         $token.dropFirst().map { _ in false }.assign(to: &$isLoading)
+    }
+    
+    func toSignUp() {
+        router.signUp()
     }
     
     func fieldsNotFilled() -> Bool {

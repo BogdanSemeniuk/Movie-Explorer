@@ -54,14 +54,14 @@ struct SignUpView<ViewModel: SignUpAbstraction>: View {
             
             Spacer()
             Button("SignUp.registerBtn") {
-                viewModel.signUp()
+                viewModel.registerAccount()
             }
             .buttonStyle(ActionButtonStyle())
             .disabled(viewModel.fieldsNotFilled())
             
             PromptWithAction(text: "SignUp.signInPrompt".localized(),
                              actionText: "SignUp.signInBtn".localized()) {
-                
+                viewModel.toSignIn()
             }
             .padding(.vertical)
         }.onTapGesture { focusedField = nil }
@@ -70,6 +70,7 @@ struct SignUpView<ViewModel: SignUpAbstraction>: View {
         .alert(isPresented: $viewModel.isPresentedError, error: viewModel.error) {
             Button("Ok") {  }
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
@@ -81,6 +82,6 @@ fileprivate extension SignUpView {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpView(viewModel: SignUpViewModel())
+        SignUpFactory.make()
     }
 }

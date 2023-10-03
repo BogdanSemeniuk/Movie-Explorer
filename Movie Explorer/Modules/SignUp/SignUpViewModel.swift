@@ -17,8 +17,9 @@ protocol SignUpAbstraction: ObservableObject {
     var isLoading: Bool { get }
     var error: SignUpViewModel.InputError? { get set }
     var isPresentedError: Bool { get set }
-    func signUp()
+    func registerAccount()
     func fieldsNotFilled() -> Bool
+    func toSignIn()
 }
 
 final class SignUpViewModel: SignUpAbstraction {
@@ -30,7 +31,11 @@ final class SignUpViewModel: SignUpAbstraction {
     @Published var error: InputError?
     @Published var isPresentedError = false
     
-    init() {
+    private let router: Routable
+    
+    init(router: Routable) {
+        self.router = router
+        
         $error.filter { $0 != nil }.map { _ in true }.assign(to: &$isPresentedError)
         $isPresentedError.filter { !$0 }.map { _ in nil  }.assign(to: &$error)
     }
@@ -39,12 +44,16 @@ final class SignUpViewModel: SignUpAbstraction {
         return email.isEmpty || email.isEmpty || password.isEmpty || confirmedPassword.isEmpty
     }
     
-    func signUp() {
+    func registerAccount() {
         do {
             try propertiesValidation()
         } catch {
             self.error = InputError(error)
         }
+    }
+    
+    func toSignIn() {
+        router.signIn()
     }
     
     private func propertiesValidation() throws  {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignUpFactory {
     static func make() -> some View {
-        return SignUpView(viewModel: SignUpViewModel())
+        let router = Router.shared
+        return SignUpView(viewModel: SignUpViewModel(router: router))
     }
 }

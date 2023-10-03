@@ -43,7 +43,7 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
             
             PromptWithAction(text: "SignIn.signUpPrompt".localized(),
                              actionText: "SignIn.signUpBtn".localized()) {
-                
+                viewModel.toSignUp()
             }
             .padding(.vertical)
         }
@@ -52,12 +52,13 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
         }
         .spinner(isPresented: viewModel.isLoading,
                  spinnerView: { AnyView(LottieView(name: "LoadingAnimation")) })
+        .navigationBarBackButtonHidden()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView(viewModel: SignInViewModel())
+        SignInFactory.make()
     }
 }
 
