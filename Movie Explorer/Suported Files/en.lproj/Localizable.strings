@@ -6,6 +6,8 @@
   
 */
 
+"okBtn" = "OK";
+
 "SignIn.welcomeText" = "Welcome to Movie Explorer!";
 "SignIn.emailTF" = "Email";
 "SignIn.passwordTF" = "Password";

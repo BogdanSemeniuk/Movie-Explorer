@@ -6,6 +6,8 @@
   
 */
 
+"okBtn" = "OK";
+
 "SignInView.welcomeText" = "Вітаємо в Movie Explorer!";
 "SignInView.emailTF" = "Пошта";
 "SignInView.passwordTF" = "Пароль";

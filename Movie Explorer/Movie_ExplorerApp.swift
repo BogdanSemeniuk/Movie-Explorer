@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Movie_ExplorerApp: App {
+    @Environment(\.scenePhase) var scenePhase
+    
     var body: some Scene {
         WindowGroup {
             RouterView()
+        }.onChange(of: scenePhase) { _ in
+            PersistenceController.shared.save()
         }
     }
 }
