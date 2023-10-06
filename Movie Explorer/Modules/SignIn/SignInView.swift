@@ -58,7 +58,7 @@ struct SignInView<ViewModel: SignInAbstraction>: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInFactory.make()
+        DependencyContainer.shared.signInModule
     }
 }
 

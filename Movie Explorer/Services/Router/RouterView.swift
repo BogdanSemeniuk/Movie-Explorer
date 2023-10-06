@@ -8,31 +8,29 @@
 import SwiftUI
 
 struct RouterView: View {
-    @ObservedObject private var router = Router.shared
+    @ObservedObject private var dependencyContainer = DependencyContainer.shared
+    @ObservedObject private var router = DependencyContainer.shared.router
+    @ObservedObject private var authService = DependencyContainer.shared.authService
     
     var body: some View {
         NavigationStack(path: $router.path) {
-            RootView()
+            rootView
                 .navigationDestination(for: Router.Destination.self) { destination in
                     switch destination {
                     case .signIn:
-                        SignInFactory.make()
+                        dependencyContainer.signInModule
                     case .signUp:
-                        SignUpFactory.make()
+                        dependencyContainer.signUpModule
                     }
                 }
         }
     }
-}
-
-struct RootView: View {
-    @ObservedObject private var authService = AuthService(persistenceController: .shared)
     
-    var body: some View {
+    @ViewBuilder private var rootView: some View {
         if authService.isLogined {
-            ExploreFactory.make()
+            dependencyContainer.exploreModule
         } else {
-            SignInFactory.make()
+            dependencyContainer.signInModule
         }
     }
 }

@@ -82,6 +82,6 @@ fileprivate extension SignUpView {
 
 struct SignUpView_Previews: PreviewProvider {
     static var previews: some View {
-        SignUpFactory.make()
+        DependencyContainer.shared.signUpModule
     }
 }

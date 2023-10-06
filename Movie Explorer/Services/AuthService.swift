@@ -31,8 +31,8 @@ final class AuthService: AuthManageable, ObservableObject {
         
         _ = User(userName, email, password)
         
-        let authToken = AuthToken()
-        authToken.value = generateToken()
+        let newToken = generateToken()
+        _ = AuthToken(value: newToken)
         persistenceController.save()
         isLogined = true
     }
