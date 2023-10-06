@@ -20,23 +20,16 @@ final class Router: ObservableObject {
     static let shared = Router()
     @Published var path = [Destination]()
     
-    init() {}
+    private init() {}
 }
 
 extension Router: Routable {
     func signIn() {
-        if path.isEmpty {
-            path.append(.signIn)
-        } else {
-            path.removeLast()
-        }
+        path.removeLast()
     }
     
     func signUp() {
-        if path.isEmpty {
-            path.append(.signUp)
-        } else {
-            path.removeLast()
-        }
+        path.append(.signUp)
     }
+
 }

@@ -12,7 +12,7 @@ struct RouterView: View {
     
     var body: some View {
         NavigationStack(path: $router.path) {
-            SignInFactory.make()
+            RootView()
                 .navigationDestination(for: Router.Destination.self) { destination in
                     switch destination {
                     case .signIn:
@@ -21,6 +21,18 @@ struct RouterView: View {
                         SignUpFactory.make()
                     }
                 }
+        }
+    }
+}
+
+struct RootView: View {
+    @ObservedObject private var authService = AuthService(persistenceController: .shared)
+    
+    var body: some View {
+        if authService.isLogined {
+            ExploreFactory.make()
+        } else {
+            SignInFactory.make()
         }
     }
 }

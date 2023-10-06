@@ -15,7 +15,7 @@ protocol SignUpAbstraction: ObservableObject {
     var confirmedPassword: String { get set }
     var userName: String { get set }
     var isLoading: Bool { get }
-    var error: SignUpViewModel.InputError? { get set }
+    var errorDescription: String? { get }
     var isPresentedError: Bool { get set }
     func registerAccount()
     func fieldsNotFilled() -> Bool
@@ -28,16 +28,18 @@ final class SignUpViewModel: SignUpAbstraction {
     @Published var password = ""
     @Published var confirmedPassword = ""
     @Published var isLoading = false
-    @Published var error: InputError?
+    @Published var errorDescription: String?
     @Published var isPresentedError = false
     
     private let router: Routable
+    private let authService: AuthManageable
     
-    init(router: Routable) {
+    init(router: Routable, authService: AuthManageable) {
         self.router = router
+        self.authService = authService
         
-        $error.filter { $0 != nil }.map { _ in true }.assign(to: &$isPresentedError)
-        $isPresentedError.filter { !$0 }.map { _ in nil  }.assign(to: &$error)
+        $errorDescription.filter { $0 != nil }.map { _ in true }.assign(to: &$isPresentedError)
+        $isPresentedError.filter { !$0 }.map { _ in nil  }.assign(to: &$errorDescription)
     }
     
     func fieldsNotFilled() -> Bool {
@@ -47,13 +49,18 @@ final class SignUpViewModel: SignUpAbstraction {
     func registerAccount() {
         do {
             try propertiesValidation()
+            try saveUser()
         } catch {
-            self.error = InputError(error)
+            self.errorDescription = error.localizedDescription
         }
     }
     
     func toSignIn() {
         router.signIn()
+    }
+    
+    private func saveUser() throws {
+        try authService.registerUser(with: userName, email, password)
     }
     
     private func propertiesValidation() throws  {
@@ -67,7 +74,7 @@ final class SignUpViewModel: SignUpAbstraction {
 
 
 extension SignUpViewModel {
-    enum InputError: LocalizedError, CaseIterable {
+    enum InputError: LocalizedError {
         case shortPassword, passwordsDontMatch, digitlessPassword, emailSuffix, emailAt
         
         var errorDescription: String? {
@@ -78,12 +85,6 @@ extension SignUpViewModel {
             case .emailSuffix: return "Email must have suffix .ua, .com, etc"
             case .emailAt: return "Email must contain @"
             }
-        }
-        
-        init?(_ error: Error) {
-            guard let inputError = InputError.allCases
-                .first(where: { $0.localizedDescription == error.localizedDescription }) else { return nil }
-            self = inputError
         }
     }
 }

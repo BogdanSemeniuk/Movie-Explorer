@@ -10,6 +10,8 @@ import SwiftUI
 struct SignUpFactory {
     static func make() -> some View {
         let router = Router.shared
-        return SignUpView(viewModel: SignUpViewModel(router: router))
+        let authService = AuthService()
+        let viewModel = SignUpViewModel(router: router, authService: authService)
+        return SignUpView(viewModel: viewModel)
     }
 }
